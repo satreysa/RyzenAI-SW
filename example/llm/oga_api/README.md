@@ -4,56 +4,42 @@ Ryzen AI Software includes support for deploying LLMs on Ryzen AI PCs using the 
 
 ## Pre-optimized Models
 
-AMD provides a set of pre-optimized LLMs ready to be deployed with Ryzen AI Software and the supporting runtime for hybrid execution. These models can be found on Hugging Face: 
+AMD provides a set of pre-optimized LLMs ready to be deployed with Ryzen AI Software and the supporting runtime for hybrid and NPU execution. These models can be found on Hugging Face: 
 
 ### Published models: 
+- [Ryzen AI Hybrid models.](https://huggingface.co/collections/amd/ryzenai-14-llm-hybrid-models-67da31231bba0f733750a99c)
+- [Ryzen AI NPU models.](https://huggingface.co/collections/amd/ryzenai-13-llm-npu-models-6759f510b8132db53e044aaf)
 
-- https://huggingface.co/amd/Phi-3-mini-4k-instruct-awq-g128-int4-asym-fp16-onnx-hybrid 
-- https://huggingface.co/amd/Phi-3.5-mini-instruct-awq-g128-int4-asym-fp16-onnx-hybrid 
-- https://huggingface.co/amd/Mistral-7B-Instruct-v0.3-awq-g128-int4-asym-fp16-onnx-hybrid 
-- https://huggingface.co/amd/Qwen1.5-7B-Chat-awq-g128-int4-asym-fp16-onnx-hybrid 
-- https://huggingface.co/amd/chatglm3-6b-awq-g128-int4-asym-fp16-onnx-hybrid 
-- https://huggingface.co/amd/Llama-2-7b-hf-awq-g128-int4-asym-fp16-onnx-hybrid 
-- https://huggingface.co/amd/Llama-2-7b-chat-hf-awq-g128-int4-asym-fp16-onnx-hybrid 
-- https://huggingface.co/amd/Llama-3-8B-awq-g128-int4-asym-fp16-onnx-hybrid/tree/main 
-- https://huggingface.co/amd/Llama-3.1-8B-awq-g128-int4-asym-fp16-onnx-hybrid/tree/main 
-- https://huggingface.co/amd/Llama-3.2-1B-Instruct-awq-g128-int4-asym-fp16-onnx-hybrid 
-- https://huggingface.co/amd/Llama-3.2-3B-Instruct-awq-g128-int4-asym-fp16-onnx-hybrid 
-- https://huggingface.co/amd/Mistral-7B-Instruct-v0.1-hybrid 
-- https://huggingface.co/amd/Mistral-7B-Instruct-v0.2-hybrid 
-- https://huggingface.co/amd/Mistral-7B-v0.3-hybrid 
-- https://huggingface.co/amd/Llama-3.1-8B-Instruct-hybrid 
-- https://huggingface.co/amd/CodeLlama-7b-instruct-g128-hybrid 
-- https://huggingface.co/amd/DeepSeek-R1-Distill-Llama-8B-awq-asym-uint4-g128-lmhead-onnx-hybrid 
-- https://huggingface.co/amd/DeepSeek-R1-Distill-Qwen-1.5B-awq-asym-uint4-g128-lmhead-onnx-hybrid
-- https://huggingface.co/amd/DeepSeek-R1-Distill-Qwen-7B-awq-asym-uint4-g128-lmhead-onnx-hybrid
-- https://huggingface.co/amd/AMD-OLMo-1B-SFT-DPO-hybrid
-- https://huggingface.co/amd/Qwen2-7B-awq-uint4-asym-g128-lmhead-fp16-onnx-hybrid
-- https://huggingface.co/amd/Qwen2-1.5B-awq-uint4-asym-global-g128-lmhead-g32-fp16-onnx-hybrid
-- https://huggingface.co/amd/gemma-2-2b-awq-uint4-asym-g128-lmhead-g32-fp16-onnx-hybrid
+## Ryzen AI Installation
 
+- The steps for installing Ryzen AI along with it's requirement can be found in the Official Ryzen AI Software documantion page here - https://ryzenai.docs.amd.com/en/latest/inst.html
 
-## Run Models using C++ and Python Onnxruntime GenAI API
-
-- The steps for deploying the pre-optimized models using Python or C++ APIs for the Hybrid execution mode of LLMs, which leverages both the NPU and GPU can be found in the Official Ryzen AI Software 1.4 documantion page here - https://ryzenai.docs.amd.com/en/latest/hybrid_oga.html
-
-## Steps to compile and run oga_api example.
+## Steps to compile and run LLM example.
 - Activate Ryzen AI environment:
-```conda activate ryzen-ai-1.5.0```
-- Download the model:
+```
+conda activate ryzen-ai-1.5.0
+```
+- Download the model: This example uses the Llama-2-7b-chat model.
 ```
 #hyrbid model:
 git clone https://huggingface.co/amd/Llama-2-7b-chat-hf-awq-g128-int4-asym-fp16-onnx-hybrid
+
 #npu model:
 git clone https://huggingface.co/amd/Llama2-7b-chat-awq-g128-int4-asym-bf16-onnx-ryzen-strix
 ```
 - Clone the RyzenAI-SW repository:
-```git clone https://github.com/amd/RyzenAI-SW```
+```
+git clone https://github.com/amd/RyzenAI-SW
+```
 - Navigate to OGA_API folder:
-```cd path\to\RyzenAI-SW\example\llm\oga_api```
+```
+cd path\to\RyzenAI-SW\example\llm\oga_api
+```
 - Copy necessary DLLs and onnxruntime-genai.lib:
-```xcopy /I "%RYZEN_AI_INSTALLATION_PATH%\deployment\*" libs```
-```xcopy /I "%RYZEN_AI_INSTALLATION_PATH%\LLM\onnxruntime_genai\lib\onnxruntime-genai.lib" libs```
+```
+xcopy /I "%RYZEN_AI_INSTALLATION_PATH%\deployment\*" libs
+xcopy /I "%RYZEN_AI_INSTALLATION_PATH%\LLM\onnxruntime_genai\lib\onnxruntime-genai.lib" libs
+```
 - Compile and build the code:
 ```
    mkdir build
@@ -63,7 +49,14 @@ git clone https://huggingface.co/amd/Llama2-7b-chat-awq-g128-int4-asym-bf16-onnx
    cd bin\Release
 ```
 - Execute code:
-```.\example.exe```
+```
+.\example.exe -m "<path_to_model>"
+```
+- Example command
+```
+.\example.exe -m "path\to\Llama-2-7b-chat-hf-awq-g128-int4-asym-fp16-onnx-hybrid"
+```
+
 
 # Copyright
 
