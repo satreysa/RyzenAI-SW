@@ -37,6 +37,34 @@ AMD provides a set of pre-optimized LLMs ready to be deployed with Ryzen AI Soft
 
 - The steps for deploying the pre-optimized models using Python or C++ APIs for the Hybrid execution mode of LLMs, which leverages both the NPU and GPU can be found in the Official Ryzen AI Software 1.4 documantion page here - https://ryzenai.docs.amd.com/en/latest/hybrid_oga.html
 
+## Steps to compile and run oga_api example.
+- Activate Ryzen AI environment:
+```conda activate ryzen-ai-1.5.0```
+- Download the model:
+```
+#hyrbid model:
+git clone https://huggingface.co/amd/Llama-2-7b-chat-hf-awq-g128-int4-asym-fp16-onnx-hybrid
+#npu model:
+git clone https://huggingface.co/amd/Llama2-7b-chat-awq-g128-int4-asym-bf16-onnx-ryzen-strix
+```
+- Clone the RyzenAI-SW repository:
+```git clone https://github.com/amd/RyzenAI-SW```
+- Navigate to OGA_API folder:
+```cd path\to\RyzenAI-SW\example\llm\oga_api```
+- Copy necessary DLLs and onnxruntime-genai.lib:
+```xcopy /I "%RYZEN_AI_INSTALLATION_PATH%\deployment\*" libs```
+```xcopy /I "%RYZEN_AI_INSTALLATION_PATH%\LLM\onnxruntime_genai\lib\onnxruntime-genai.lib" libs```
+- Compile and build the code:
+```
+   mkdir build
+   cd build
+   cmake .. -A x64
+   cmake --build . --config Release
+   cd bin\Release
+```
+- Execute code:
+```.\example.exe```
+
 # Copyright
 
 Copyright(C) 2025 Advanced Micro Devices, Inc. All rights reserved.
