@@ -86,8 +86,6 @@ Generating response:
 These are the basic concepts of object-oriented programming. Of course, there are many more advanced concepts and techniques that can be used in OOP, but these are the fundamental building blocks upon which all other concepts are based.
 ```
 
-Here’s a more professional version of your note:
-
 **Note:** This example script demonstrates how to run the LLaMA-2-7b-Chat model. The chat template used in `main.cpp` is specifically tailored for the LLaMA-2-7b-Chat model. If you are using a different model, you may need to modify the chat template accordingly to ensure compatibility with that model’s expected input format.
 
 ```
