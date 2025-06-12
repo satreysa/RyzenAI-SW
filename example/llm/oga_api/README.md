@@ -33,6 +33,8 @@ git clone https://huggingface.co/amd/Llama2-7b-chat-awq-g128-int4-asym-bf16-onnx
 ```
 git clone https://github.com/amd/RyzenAI-SW
 ```
+**Testing note**: ```git clone https://github.com/satreysa/RyzenAI-SW``` The repository will be merged with amd/RyzenAI-SW post testing.
+
 - Navigate to OGA_API folder:
 ```
 cd path\to\RyzenAI-SW\example\llm\oga_api
