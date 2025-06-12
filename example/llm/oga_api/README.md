@@ -27,6 +27,8 @@ git clone https://huggingface.co/amd/Llama-2-7b-chat-hf-awq-g128-int4-asym-fp16-
 #npu model:
 git clone https://huggingface.co/amd/Llama2-7b-chat-awq-g128-int4-asym-bf16-onnx-ryzen-strix
 ```
+**Testing note**: For the time being change the genai_config.json file of NPU model to remove vaip_llm.json path. We will be removing the path from all the NPU published models before the 1.5 release. So this step won't be required.
+
 - Clone the RyzenAI-SW repository:
 ```
 git clone https://github.com/amd/RyzenAI-SW
